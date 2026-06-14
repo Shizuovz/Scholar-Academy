@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../config/firebase';
 
 export const AdmissionsCallbackForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -6,6 +8,7 @@ export const AdmissionsCallbackForm: React.FC = () => {
     phoneNumber: '',
     targetExam: 'IIT-JEE Mains & Adv',
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.currentTarget;
@@ -15,14 +18,27 @@ export const AdmissionsCallbackForm: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert('Application submitted! Our counselor will get back to you within 24 hours.');
-    setFormData({
-      fullName: '',
-      phoneNumber: '',
-      targetExam: 'IIT-JEE Mains & Adv',
-    });
+    setLoading(true);
+    try {
+      await addDoc(collection(db, 'callbacks'), {
+        ...formData,
+        createdAt: serverTimestamp(),
+        type: 'admission',
+      });
+      alert('Application submitted! Our counselor will get back to you within 24 hours.');
+      setFormData({
+        fullName: '',
+        phoneNumber: '',
+        targetExam: 'IIT-JEE Mains & Adv',
+      });
+    } catch (error) {
+      console.error('Error submitting form: ', error);
+      alert('There was an error submitting your request. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -70,10 +86,11 @@ export const AdmissionsCallbackForm: React.FC = () => {
           </select>
         </div>
         <button
-          className="w-full bg-primary-container text-white font-bold py-md rounded-lg mt-lg hover:shadow-lg hover:bg-[#de741d] transition-all transform active:scale-95"
+          className="w-full bg-primary-container text-white font-bold py-md rounded-lg mt-lg hover:shadow-lg hover:bg-[#de741d] transition-all transform active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
           type="submit"
+          disabled={loading}
         >
-          Submit Application
+          {loading ? 'Submitting...' : 'Submit Application'}
         </button>
       </form>
     </div>

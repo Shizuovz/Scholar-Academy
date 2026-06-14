@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import { useMedia } from "../hooks/useMedia";
 
 function Footer() {
+  const { getMedia } = useMedia();
   return (
     <footer className="bg-inverse-surface py-xl">
       <div className="max-w-container-max mx-auto px-gutter">
@@ -10,8 +12,8 @@ function Footer() {
             <div className="flex items-center gap-sm">
               <img
                 alt="Scholar Academy Logo"
-                className="h-20 w-20 object-contain"
-                src={logo}
+                className="h-15 w-40 object-contain"
+                src={getMedia('footer_logo', logo)}
               />
             </div>
 
@@ -136,21 +138,34 @@ function Footer() {
               <span className="material-symbols-outlined text-primary-container mt-0.5">
                 location_on
               </span>
-              <p>Plot 45, Near Circular Road, Dimapur, Nagaland - 797112</p>
+              <div>
+                <p>Near Model Village Gate, 5th Mile Choumoukedima</p>
+                <p>Church road, Dimapur</p>
+              </div>
             </div>
 
-            <div className="flex items-center gap-sm text-sm text-on-inverse-surface/60">
-              <span className="material-symbols-outlined text-primary-container">
+            <div className="flex items-start gap-sm text-sm text-on-inverse-surface/60">
+              <span className="material-symbols-outlined text-primary-container mt-0.5">
                 call
               </span>
-              <p>+91 98765 43210</p>
+              <div>
+                <p>+91 7005650117</p>
+                <p>+91 6002764667</p>
+              </div>
             </div>
 
             <div className="flex items-center gap-sm text-sm text-on-inverse-surface/60">
               <span className="material-symbols-outlined text-primary-container">
                 mail
               </span>
-              <p>admissions@scholaracademy.edu</p>
+              <p>info@scholaracademydimapur.com</p>
+            </div>
+
+            <div className="flex items-center gap-sm text-sm text-on-inverse-surface/60">
+              <span className="material-symbols-outlined text-primary-container">
+                schedule
+              </span>
+              <p>Mon–Sat: 8 AM – 8 PM</p>
             </div>
           </div>
         </div>

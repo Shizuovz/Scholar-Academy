@@ -1,67 +1,87 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../config/firebase';
 
 export const Initiatives: React.FC = () => {
-  const facultyAreas = [
-    'Effective Utilization of Science Laboratories',
-    'Mathematics Laboratory Activities and Demonstrations',
-    'Activity-Based and Experiential Learning Approaches',
-    'Practical Teaching Methodologies',
-    'Development of Scientific Temperament',
-    'Enhancing Student Engagement through Hands-On Learning',
-    'Innovative Classroom and Laboratory Practices',
-    'Safety and Best Practices in Laboratory Management',
-  ];
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<any>({
+    facultyAreas: [],
+    assessmentBenefits: [],
+    roboticsCourse: {
+      whoCanEnroll: [],
+      whatStudentsLearn: [],
+      handsOnLearning: [],
+      benefits: []
+    }
+  });
 
-  const assessmentBenefits = [
-    'Helps students understand their unique strengths and abilities',
-    'Identifies suitable academic and career pathways',
-    'Improves self-awareness and confidence',
-    'Supports informed subject and career selection',
-    'Enhances emotional intelligence and decision-making skills',
-    'Assists educators in understanding student needs',
-    'Encourages holistic student development',
-  ];
+  useEffect(() => {
+    const fetchInitiatives = async () => {
+      try {
+        const docRef = doc(db, "pages", "initiatives");
+        const docSnap = await getDoc(docRef);
 
-  const roboticsCourse = {
-    whoCanEnroll: [
-      'Students from Class VI to Class X',
-      'Students of Class XI and XII from any stream',
-      'Undergraduate and higher education students',
-      'Young learners interested in technology and innovation',
-    ],
-    whatStudentsLearn: [
-      'Fundamentals of Robotics and Automation',
-      'Coding and Programming Concepts',
-      'Artificial Intelligence & Machine Learning Basics',
-      'Sensors, Electronics, and Smart Systems',
-      'Design Thinking and Innovation',
-      'Computational and Logical Reasoning',
-      'Problem Solving Techniques',
-      'Real-World Technology Applications',
-      'Future Technologies and Digital Skills',
-    ],
-    handsOnLearning: [
-      'Robotics laboratory sessions',
-      'AI-based practical activities',
-      'Robot design and assembly projects',
-      'Coding and automation exercises',
-      'Technology demonstrations and workshops',
-      'Innovation and project-based learning',
-      'Prototype development and presentations',
-      'Team-based problem-solving challenges',
-    ],
-    benefits: [
-      'Develop future-ready technical skills',
-      'Strengthen creativity and innovation capabilities',
-      'Improve analytical and critical thinking',
-      'Build confidence in using modern technologies',
-      'Enhance teamwork, communication, and leadership skills',
-      'Gain early exposure to AI and robotics careers',
-      'Prepare for higher education and emerging technology-driven professions',
-    ],
-  };
+        if (docSnap.exists()) {
+          setData(docSnap.data());
+        } else {
+          // Fallback static data if not set up in CMS yet
+          setData({
+            facultyAreas: [
+              'Effective Utilization of Science Laboratories',
+              'Mathematics Laboratory Activities and Demonstrations',
+              'Activity-Based and Experiential Learning Approaches',
+              'Practical Teaching Methodologies',
+            ],
+            assessmentBenefits: [
+              'Helps students understand their unique strengths and abilities',
+              'Identifies suitable academic and career pathways',
+              'Improves self-awareness and confidence',
+            ],
+            roboticsCourse: {
+              whoCanEnroll: [
+                'Students from Class VI to Class X',
+                'Students of Class XI and XII from any stream',
+              ],
+              whatStudentsLearn: [
+                'Fundamentals of Robotics and Automation',
+                'Coding and Programming Concepts',
+              ],
+              handsOnLearning: [
+                'Robotics laboratory sessions',
+                'AI-based practical activities',
+              ],
+              benefits: [
+                'Develop future-ready technical skills',
+                'Strengthen creativity and innovation capabilities',
+              ],
+            }
+          });
+        }
+      } catch (err) {
+        console.error("Error fetching initiatives:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchInitiatives();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col bg-surface">
+        <Navbar />
+        <main className="flex-grow flex items-center justify-center">
+          <p className="text-secondary">Loading initiatives...</p>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  const { facultyAreas, assessmentBenefits, roboticsCourse } = data;
 
   return (
     <div className="min-h-screen flex flex-col bg-surface">
@@ -112,7 +132,7 @@ export const Initiatives: React.FC = () => {
                 <div className="bg-surface-container-low rounded-xl border border-surface-variant p-lg shadow-sm">
                   <h4 className="text-xl font-bold text-on-surface mb-md">Key Areas Covered</h4>
                   <ul className="space-y-sm">
-                    {facultyAreas.map((area, idx) => (
+                    {facultyAreas?.map((area: string, idx: number) => (
                       <li key={idx} className="flex items-start gap-sm">
                         <span className="material-symbols-outlined text-primary mt-0.5">check_circle</span>
                         <span className="text-secondary">{area}</span>
@@ -215,7 +235,7 @@ export const Initiatives: React.FC = () => {
               <div className="lg:col-span-7 bg-surface rounded-xl p-lg border border-surface-variant shadow-sm">
                 <h4 className="text-2xl font-bold text-on-surface mb-md">Benefits of the Program</h4>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-sm">
-                  {assessmentBenefits.map((benefit, idx) => (
+                  {assessmentBenefits?.map((benefit: string, idx: number) => (
                     <li key={idx} className="flex items-start gap-sm">
                       <span className="material-symbols-outlined text-primary-container mt-0.5">check_circle</span>
                       <span className="text-secondary text-sm">{benefit}</span>
@@ -265,7 +285,7 @@ export const Initiatives: React.FC = () => {
                 <div className="bg-surface-container-low rounded-xl border border-surface-container-highest p-lg scholar-card">
                   <h3 className="font-h3 text-h3 text-on-surface mb-md">Who Can Enroll?</h3>
                   <ul className="space-y-sm text-secondary">
-                    {roboticsCourse.whoCanEnroll.map((item) => (
+                    {roboticsCourse?.whoCanEnroll?.map((item: string) => (
                       <li key={item} className="flex items-start gap-sm">
                         <span className="material-symbols-outlined text-primary text-xl mt-0.5">check_circle</span>
                         <span>{item}</span>
@@ -277,7 +297,7 @@ export const Initiatives: React.FC = () => {
                 <div className="bg-surface-container-low rounded-xl border border-surface-container-highest p-lg scholar-card">
                   <h3 className="font-h3 text-h3 text-on-surface mb-md">What Students Learn</h3>
                   <ul className="space-y-sm text-secondary">
-                    {roboticsCourse.whatStudentsLearn.map((item) => (
+                    {roboticsCourse?.whatStudentsLearn?.map((item: string) => (
                       <li key={item} className="flex items-start gap-sm">
                         <span className="material-symbols-outlined text-primary text-xl mt-0.5">check_circle</span>
                         <span>{item}</span>
@@ -289,7 +309,7 @@ export const Initiatives: React.FC = () => {
                 <div className="bg-surface-container-low rounded-xl border border-surface-container-highest p-lg scholar-card">
                   <h3 className="font-h3 text-h3 text-on-surface mb-md">Hands-On Practical Learning</h3>
                   <ul className="space-y-sm text-secondary">
-                    {roboticsCourse.handsOnLearning.map((item) => (
+                    {roboticsCourse?.handsOnLearning?.map((item: string) => (
                       <li key={item} className="flex items-start gap-sm">
                         <span className="material-symbols-outlined text-primary text-xl mt-0.5">check_circle</span>
                         <span>{item}</span>
@@ -301,7 +321,7 @@ export const Initiatives: React.FC = () => {
                 <div className="bg-surface-container-low rounded-xl border border-surface-container-highest p-lg scholar-card">
                   <h3 className="font-h3 text-h3 text-on-surface mb-md">Benefits of the Program</h3>
                   <ul className="space-y-sm text-secondary">
-                    {roboticsCourse.benefits.map((item) => (
+                    {roboticsCourse?.benefits?.map((item: string) => (
                       <li key={item} className="flex items-start gap-sm">
                         <span className="material-symbols-outlined text-primary text-xl mt-0.5">check_circle</span>
                         <span>{item}</span>

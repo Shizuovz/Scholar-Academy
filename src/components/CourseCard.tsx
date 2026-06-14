@@ -5,7 +5,8 @@ interface CourseCardProps {
   badge: string;
   image: string;
   duration: string;
-  eligibility: string;
+  eligibility?: string;
+  description?: string;
   features: string[];
   onDetailsClick?: () => void;
 }
@@ -16,6 +17,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({
   image,
   duration,
   eligibility,
+  description,
   features,
   onDetailsClick,
 }) => {
@@ -33,15 +35,18 @@ export const CourseCard: React.FC<CourseCardProps> = ({
       </div>
       <div className="p-8 flex flex-col flex-grow">
         <h3 className="font-h3 text-h3 text-on-surface mb-4">{title}</h3>
+        {description && <p className="text-body-md text-secondary mb-4">{description}</p>}
         <div className="space-y-4 mb-8">
           <div className="flex items-center gap-3">
             <span className="material-symbols-outlined text-primary-container">schedule</span>
             <span className="text-secondary">{duration}</span>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="material-symbols-outlined text-primary-container">school</span>
-            <span className="text-secondary">{eligibility}</span>
-          </div>
+          {eligibility && (
+            <div className="flex items-center gap-3">
+              <span className="material-symbols-outlined text-primary-container">school</span>
+              <span className="text-secondary">{eligibility}</span>
+            </div>
+          )}
         </div>
         <ul className="space-y-3 mb-8 flex-grow">
           {features.map((feature, index) => (

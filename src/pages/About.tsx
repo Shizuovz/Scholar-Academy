@@ -9,8 +9,15 @@ import kishitimoni from '../assets/faculty/Kishitimoni Gogoi.jpeg';
 import ritupan from '../assets/faculty/Ritupan Baruah.jpeg';
 import sayeda from '../assets/faculty/Sayeda Hasbiya Sirin.jpeg';
 import logo2 from "../assets/logo2.png";
+import imgCampus from '../assets/images/students.jpeg';
+import imgClassroom from '../assets/images/class.jpeg';
+import imgLab from '../assets/images/exam.jpeg';
+import imgLibrary from '../assets/images/students1.jpeg';
+import imgReception from '../assets/images/counselling.jpeg';
+import { useMedia } from '../hooks/useMedia';
 
 export const About: React.FC = () => {
+  const { getMedia } = useMedia();
   const facultyMembers = [
     {
       name: 'Akangshya Duari',
@@ -123,7 +130,7 @@ export const About: React.FC = () => {
                 <div className="relative rounded-xl overflow-hidden aspect-square h-full">
                   <img
                     className="w-full h-full object-cover"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuwdoPQEibDQ85Pp40xc093WGteE4oJqC1kWEyoUfc5Pt1Y28FxMG_AccWh0g7rg_o23KQJlLYzXit_fr4KT33d8T98fhkF0e2zyT0PzAUEg3fsUVVMSJWRsrU2R-BuR95iEVtlHh2UJ1uaKmg1r2VwNyoP9S6GRgV4_AhTiupagklqGnVTDOJgtY8bREEm5COWGGvonBpPlSEYo_iW-6XuT9C4F5GgMtRzkenSRCaFc5nuFN33Q6SDIu5MvLQp-1wzF6ChBSh72A"
+                    src={getMedia('about_campus_img', imgCampus)}
                     alt="Scholar Academy Campus"
                   />
                   <div className="absolute bottom-0 left-0 right-0 p-lg bg-gradient-to-t from-black/80 to-transparent text-white">
@@ -176,24 +183,24 @@ export const About: React.FC = () => {
                 <div className="space-y-md">
                   <img
                     className="w-full aspect-[4/3] object-cover rounded-xl border border-surface-container-highest"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3oXgLcfL2jBnv_KkY9wleiOzyPLcUNt8rmA4sWgnOmBRZeutHljovCGjAVukGct-kr2_BnpFynbbcdsf3940Ay_bA63srCKAlR0R9Ioj8m86erc_JSoiKiJV0dyn5QfeF5LhCcNGOy6eUT0BY8yxK0Xn62hB-D98018vJR0KmNwhm3oQXXBBuGRONcwnYrreFbASmYT4fx0xFM9QjlMnMRz-_PoANuDyGlFiBT6hj-_IT654SRRVlCAL6-viglPX_s4WEetgzMdc"
+                    src={getMedia('about_classroom_img', imgClassroom)}
                     alt="Digital Classroom"
                   />
                   <img
                     className="w-full aspect-[4/5] object-cover rounded-xl border border-surface-container-highest"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6gJk2-kiBfrEtZTQi7LLN6OY9wvyB3_lAgdpMrGCbysRLXdDOcpbpPxiB_s0cfqDuy0l6eoIU3mXpJd5gP4oxzoGhc6oVZofH-pQuJViH_4BgQXXd0GY_qOdXFFlA5Z6aVfzHuTxxpbVTzd1Y6jEBolvceEeyC5LpnRRQgku5fmQnzvfbuszBIAaBuz9X31TycRX9KVBGFSROKTAiZFVFP6bTJo777hLnyUwlfq7naHIXmeRzXuDYe9DOnUYSFOUQ90wOcSCb1pw"
+                    src={getMedia('about_lab_img', imgLab)}
                     alt="Physics Lab"
                   />
                 </div>
                 <div className="space-y-md pt-lg">
                   <img
                     className="w-full aspect-[4/5] object-cover rounded-xl border border-surface-container-highest"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJXhznpOp-ywToimPSXXLSgLjRHzc6V2La_NYdbI8wn0XrpwhMS9a7-x4TLC97m01xBmu7clyVJ2MSJBQVaKkMDvaYwqRlBgNbrsTmzDu6-80o7K0ERRjKYycBVw779YRNJlDCeoit903NAYK646SBZls506UAQCCKxXB6gFOqXTgOnqrfUwst4XNZrP8-DR5J8xbSONNSM6yoItDkP6kZh3JC62MJeIjuEbbpb99MqFArZ9YNFHD8iLT87P2PoSS1N5Eg4VJmQNs"
+                    src={getMedia('about_library_img', imgLibrary)}
                     alt="Library"
                   />
                   <img
                     className="w-full aspect-[4/3] object-cover rounded-xl border border-surface-container-highest"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmOgmRYlftpmnW5-6kS53zsYY4zPXX9aHiv1faBRTi47Zj-1Bto4GGpiMPcMa5upzD7v1AMANZJJBVQzoCB13ltrz1LkphfaOkhvAqyB0VQPBKK562IMz8ynkeC5m5dUHqbf2CUPehPfG2RVpEhnZNqXU5cjTDZzVPTvofw6lHiPfLWK6U2_v-x1K9Mlyq8nPnKqoSHlACvAqVyqEDXKK8EhUca_39FRevWQaZO3z0Q7Z63KPohhprI92kf31EcEFoMWYIkz8gXEY"
+                    src={getMedia('about_reception_img', imgReception)}
                     alt="Reception Area"
                   />
                 </div>

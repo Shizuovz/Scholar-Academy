@@ -3,8 +3,11 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { FAQItem } from '../components/FAQItem';
 import { AdmissionsCallbackForm } from '../components/AdmissionsCallbackForm';
+import imgClassroom from '../assets/images/class.jpeg';
+import { useMedia } from '../hooks/useMedia';
 
 export const Admissions: React.FC = () => {
+  const { getMedia } = useMedia();
   const faqs = [
     {
       question: 'How do I register for the scholarship test?',
@@ -60,7 +63,7 @@ export const Admissions: React.FC = () => {
               <div className="rounded-xl overflow-hidden shadow-xl aspect-[4/3] bg-surface-container-highest">
                 <img
                   className="w-full h-full object-cover"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFCbQYGjJibkSC8wMQh9WeTgnAh6mjqYvL9hYyFHnKF4yYdkfoz52oV7dy6aITC7JPJGHuMcRYVY0Kk6Uu5pEY62rEu4RuUi9IKLcAFQw7lZ4lLmlJulEZSsMQ-XHOo8sKnWqwKRhafbwTZJDR-_jSCUfLAhQDaXrHKm1spWTqsWtCN8EwagB_nEX6cKGza5446ZlZpVHy8xuNqEzX86DnFlvB4GSAeooO3EqJqo3bcSZHPl-Ds2y8o9vtTANQALxItvZhnYcSW7c"
+                  src={getMedia('admissions_hero_img', imgClassroom)}
                   alt="Scholar Academy Classroom"
                 />
               </div>
@@ -84,8 +87,8 @@ export const Admissions: React.FC = () => {
                       </div>
                       <div>
                         <p className="font-label-caps text-secondary uppercase tracking-wider">Call Us</p>
-                        <p className="font-body-lg font-bold">+91 3862 234567</p>
-                        <p className="font-body-lg font-bold">+91 98765 43210</p>
+                        <p className="font-body-lg font-bold">+91 7005650117</p>
+                        <p className="font-body-lg font-bold">+91 6002764667</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-md">
@@ -94,22 +97,32 @@ export const Admissions: React.FC = () => {
                       </div>
                       <div>
                         <p className="font-label-caps text-secondary uppercase tracking-wider">Email Us</p>
-                        <p className="font-body-lg font-bold">admissions@scholar.edu</p>
+                        <p className="font-body-lg font-bold">info@scholaracademydimapur.com</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="pt-lg border-t border-surface-container-highest">
-                  <p className="font-label-caps text-secondary mb-xs">Working Hours</p>
-                  <p className="text-on-surface">Mon - Sat: 08:00 AM - 06:00 PM</p>
-                </div>
-                <div className="mt-lg bg-surface-dim relative grayscale hover:grayscale-0 transition-all duration-500 rounded-lg overflow-hidden h-48">
-                  <div className="absolute inset-0 flex items-center justify-center bg-surface-container-highest">
-                    <div className="w-full h-full bg-[#f0f0f0] flex flex-col items-center justify-center">
-                      <span className="material-symbols-outlined text-secondary text-4xl mb-md">map</span>
-                      <p className="font-label-caps text-secondary text-center px-md">Circular Road, Near Clock Tower, Dimapur, Nagaland - 797112</p>
-                    </div>
+                <div className="pt-lg border-t border-surface-container-highest space-y-md">
+                  <div>
+                    <p className="font-label-caps text-secondary mb-xs">Working Hours</p>
+                    <p className="text-on-surface">Mon–Sat: 8 AM – 8 PM</p>
                   </div>
+                  <div>
+                    <p className="font-label-caps text-secondary mb-xs">Location</p>
+                    <p className="text-on-surface">Near Model Village Gate, 5th Mile Choumoukedima<br />Church road, Dimapur</p>
+                  </div>
+                </div>
+                <div className="mt-lg bg-surface-dim relative rounded-lg overflow-hidden h-48">
+                  <iframe
+                    title="Scholar Academy Location"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8539.291904050408!2d93.76700688625586!3d25.85861493774702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3745e11af6f3f181%3A0x8c424b6557d91311!2sScholar%20Academy%20Dimapur%20Nagaland!5e0!3m2!1sen!2sin!4v1781429026231!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={false}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
                 </div>
               </div>
 

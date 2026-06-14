@@ -1,9 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo-dark.png";
+import { useMedia } from "../hooks/useMedia";
 
 function Navbar() {
   const location = useLocation();
+  const { getMedia } = useMedia();
   const [isOpen, setIsOpen] = useState(false);
 
   const isActive = (path: string) => location.pathname === path;
@@ -41,8 +43,8 @@ function Navbar() {
           <Link to="/" className="flex items-center gap-sm" onClick={() => setIsOpen(false)}>
             <img
               alt="Scholar Academy Logo"
-              className="h-20 w-20 object-contain"
-              src={logo}
+              className="h-30 w-30 object-contain"
+              src={getMedia('navbar_logo', logo)}
             />
             <span className="text-2xl font-bold text-primary hidden xs:inline">
               Scholar Academy

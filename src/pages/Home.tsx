@@ -5,15 +5,17 @@ import WhyChooseUs from "../components/WhyChooseUs";
 import ProgramsOverview from "../components/ProgramsOverview";
 import CTASection from "../components/CTASection";
 
-const heroImageUrl =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuAg6uw_7zwrx9xiO627pKpHszkSafm-SvuiIW5XqU5Tb0tw7YmdmG4l3xAdaUtp0RjpE9t4yK8wZ1pFbafbGH-yxhsqCSXEzMjkJdyiEcpz5EjIYjmEyVrrKFYE4i-WjF83iROoeEBAqYqr6ZBe1ziZMdlq9y2Jw9V9t8j_-qoc9yVZerpGxKNNbOGT22coJsroNZqggWGNP50FkMOU9ngX6KCYsP7240V-AABSUPn05T6jkR0L1sqFeEFhIn0EWGavQG3ApkuuX1k";
+import heroVideo from "../assets/video/hero.mp4";
+import { useMedia } from "../hooks/useMedia";
 
 function Home() {
+  const { getMedia } = useMedia();
+
   return (
     <div className="bg-background text-on-surface antialiased">
       <Navbar />
 
-      <main className="pt-20">
+      <main>
         <section className="py-xl md:py-32 bg-gradient-to-br from-surface to-surface-container-low overflow-hidden">
           <div className="max-w-container-max mx-auto px-gutter">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
@@ -73,10 +75,13 @@ function Home() {
               <div className="relative">
                 <div className="rounded-2xl bg-surface p-sm shadow-2xl border border-surface-variant">
                   <div className="aspect-[4/3] rounded-xl overflow-hidden">
-                    <img
+                    <video
                       className="w-full h-full object-cover"
-                      alt="Modern classroom setting with focused students"
-                      src={heroImageUrl}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      src={getMedia('home_hero_video', heroVideo)}
                     />
                   </div>
                 </div>

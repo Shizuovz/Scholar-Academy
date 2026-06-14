@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../config/firebase';
 
 export const CallbackForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -7,6 +9,7 @@ export const CallbackForm: React.FC = () => {
     program: 'IIT-JEE (Mains & Advanced)',
     message: '',
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.currentTarget;
@@ -16,15 +19,28 @@ export const CallbackForm: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert('Request received! We will call you back shortly.');
-    setFormData({
-      fullName: '',
-      phoneNumber: '',
-      program: 'IIT-JEE (Mains & Advanced)',
-      message: '',
-    });
+    setLoading(true);
+    try {
+      await addDoc(collection(db, 'callbacks'), {
+        ...formData,
+        createdAt: serverTimestamp(),
+        type: 'general',
+      });
+      alert('Request received! We will call you back shortly.');
+      setFormData({
+        fullName: '',
+        phoneNumber: '',
+        program: 'IIT-JEE (Mains & Advanced)',
+        message: '',
+      });
+    } catch (error) {
+      console.error('Error submitting form: ', error);
+      alert('There was an error submitting your request. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -42,16 +58,16 @@ export const CallbackForm: React.FC = () => {
       <div className="max-w-4xl mx-auto px-gutter relative z-10">
         <div className="bg-surface-container-lowest border border-surface-container-highest rounded-2xl shadow-xl overflow-hidden grid md:grid-cols-5">
           <div className="md:col-span-2 bg-primary-container p-8 text-on-primary flex flex-col justify-center">
-            <h2 className="font-h3 text-h3 mb-4">Start Your Journey</h2>
-            <p className="mb-8 opacity-90">Schedule a free counseling session with our expert academic advisors today.</p>
+            <h2 className="font-h3 text-h3 mb-4">Not sure which?</h2>
+            <p className="mb-8 opacity-90">Free Academic Counselling Session. Our expert counsellors will guide you to the right course based on your goals, background, and exam timeline.</p>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined">call</span>
-                <span className="font-semibold">+91 (123) 456-7890</span>
+                <span className="material-symbols-outlined">forum</span>
+                <span className="font-semibold cursor-pointer hover:underline">Chat on WhatsApp</span>
               </div>
               <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined">location_on</span>
-                <span className="font-semibold">Dimapur, Nagaland</span>
+                <span className="material-symbols-outlined">call</span>
+                <span className="font-semibold cursor-pointer hover:underline">Call Our Counsellor</span>
               </div>
             </div>
           </div>
@@ -91,9 +107,11 @@ export const CallbackForm: React.FC = () => {
                   value={formData.program}
                   onChange={handleChange}
                 >
-                  <option>IIT-JEE (Mains & Advanced)</option>
-                  <option>NEET-UG</option>
-                  <option>Foundation Program (8-10)</option>
+                  <option>IIT-JEE Mains & Advanced</option>
+                  <option>NEET Medical Preparation</option>
+                  <option>Foundation Program</option>
+                  <option>Repeaters / Droppers Batch</option>
+                  <option>Crash Course</option>
                   <option>Other / General Inquiry</option>
                 </select>
               </div>
@@ -109,10 +127,11 @@ export const CallbackForm: React.FC = () => {
                 ></textarea>
               </div>
               <button
-                className="w-full bg-primary-container text-on-primary py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl hover:translate-y-[-2px] transition-all"
+                className="w-full bg-primary-container text-on-primary py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl hover:translate-y-[-2px] transition-all disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
                 type="submit"
+                disabled={loading}
               >
-                Request a Callback
+                {loading ? 'Submitting...' : 'Request a Callback'}
               </button>
             </form>
           </div>

@@ -1,51 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { CourseCard } from '../components/CourseCard';
 import { CallbackForm } from '../components/CallbackForm';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../config/firebase';
+import imgCourse1 from '../assets/images/class.jpeg';
+import imgCourse2 from '../assets/images/students.jpeg';
+import imgCourse3 from '../assets/images/students1.jpeg';
+import imgCourse4 from '../assets/images/exam.jpeg';
+import imgCourse5 from '../assets/images/students with awards.jpeg';
+import imgCourseHero from '../assets/images/students.jpeg';
+import { useMedia } from '../hooks/useMedia';
 
 export const Courses: React.FC = () => {
-  const courses = [
-    {
-      id: 'iit-jee',
-      title: 'IIT-JEE (Mains & Advanced)',
-      badge: 'Jee Specialist',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAfkaLZ2TmvPEvrQOCvIyzVRRFFMwKOQ0NbRqS9_BoHfFlL60A3wLH_JtfBv2EtZ_eSY3vBnU84WZ4iAL1ja0toWPZtY4178N4GHkqyqffmkYFzFo6blJtVNtfKNX5NxjPW5Ie9qpxFtlpaZuCunCHajpjwuDcbkgqdIPkVbS8iOh2uYuvK_0KRwB5x6S1Je0yM7pxBRk_XqrxcYy8H3Dq2Qv9V9iIiE3AHVyiD3vEKSTKH38rCYzG8jp7-IpvJsjuki4CwJ0NQcEc',
-      duration: '2-Year & 1-Year Programs',
-      eligibility: 'Eligibility: Class 11 & 12',
-      features: [
-        'Daily Practice Problems (DPPs)',
-        'Weekly Computer-Based Tests',
-        'Personalized Mentorship for Advanced',
-      ],
-    },
-    {
-      id: 'neet',
-      title: 'NEET-UG',
-      badge: 'Medical Path',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDBtrNFPpXEviRKP_ylhywqtpa1335S4IsopZBEAV0USH_Ju5uorV0wuZGafrR8s4AtFnfxCYtrGHN0DCO6ItB-AYsGbBO7w64MalzihqgZQNKz7YBO1jlwyt3QFToM442m02E5aixCxT7GLXi4D022HgTDiqaDCQ17nL9xr2zIIUKG2WNbjVsU2nVVy55W4kTbqpvaDSGWlY42e3iWkE3JD2Aa_4JtKajWTw7xcCN_SEOVyahFna7mAyJ_NhFckc88Z1ID_YBmMQs',
-      duration: 'Comprehensive Preparation',
-      eligibility: 'Eligibility: Class 11 & 12',
-      features: [
-        'Biology-centric Intensive Modules',
-        'NCERT Pattern Based Testing',
-        'Regular Doubt Clearing Sessions',
-      ],
-    },
-    {
-      id: 'foundation',
-      title: 'Foundation Programs',
-      badge: 'Early Start',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBc_C-kX88kwA4CoBjJ3Wt_IHelhEA9nUN5TpxjtE1oX-PgLUY4MhXCesMdz6OMKQyKeGobPjZ8rIQ4oRJxZ7MhSIMIsvJMWzShzHbG6j3f9nNDhJVKTBjzGhJ2ngh-cqlevVZgYi81g6y9G2sGO3SsEs2LHEiXfd65XR5FCIBogdw15_kNG5cArXhPjFazJFvPgqUr0N9Vta5cD0_JrefjaB2eJd9YJCNBp_gytqYsYyt8QAr154aRVdM1vuIhpUsclIPquEPxWeY',
-      duration: 'Concept Building',
-      eligibility: 'Eligibility: Class 8, 9 & 10',
-      features: [
-        'Focus on NTSE & Olympiads',
-        'Advanced Math & Logic Mastery',
-        'Stress-Free Competitive Edge',
-      ],
-    },
-  ];
+  const [courses, setCourses] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { getMedia } = useMedia();
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "courses"));
+        const coursesData = querySnapshot.docs.map(doc => ({ 
+          id: doc.id, 
+          ...doc.data(),
+          image: doc.data().imageUrl || imgCourse1
+        }));
+        
+        coursesData.sort((a: any, b: any) => {
+          const orderA = a.order !== undefined ? a.order : 999;
+          const orderB = b.order !== undefined ? b.order : 999;
+          return orderA - orderB;
+        });
+
+        setCourses(coursesData);
+      } catch (err) {
+        console.error("Error fetching courses from Firebase:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCourses();
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-surface">
       <Navbar />
@@ -81,7 +79,7 @@ export const Courses: React.FC = () => {
               <img
                 alt="Academic Environment"
                 className="w-full h-full object-cover grayscale-[20%] sepia-[10%]"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFKKn4rKAaKRV00jQNccaGFyhTq4VHMOdAlJMLj9WV4ZAwyZ_VzEcKXfGkcqKzP9bviPYBbLVIFxOmDy6wZdzJZmxQFwSSGtN40OQObbH2NJ2PopJILEcqSP5PkwSQ_hW760JB-ONqNvEXoRu6k3VuPbHMdi-xrkkoN3Oskmr81PMz-LNsoJHgG80QxN2c7TO707F2LB2z-RJvqHzn9V0_AVHYvRC_v0gpZNIwmN0EflZ596KPlPzMtqVQz7Btppc74X-mPT1ByVE"
+                src={getMedia('courses_hero_img', imgCourseHero)}
               />
             </div>
           </div>
@@ -94,11 +92,36 @@ export const Courses: React.FC = () => {
               <h2 className="font-h2 text-h2 text-on-surface mb-4">Our Specialized Programs</h2>
               <div className="h-1 w-20 bg-primary-container mx-auto"></div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter max-w-5xl mx-auto">
-              {courses.map((course) => (
-                <CourseCard key={course.id} {...course} />
-              ))}
-            </div>
+            
+            {loading ? (
+              <div className="text-center py-12 text-secondary">Loading courses...</div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter max-w-5xl mx-auto">
+                {courses.map((course) => (
+                  <CourseCard key={course.id} {...course} />
+                ))}
+                
+                {/* Counselling Call to Action Card */}
+                <div className="program-card bg-primary-container text-on-primary rounded-xl border border-primary-container overflow-hidden flex flex-col h-full p-8 justify-center items-center text-center">
+                  <span className="material-symbols-outlined text-5xl mb-4 opacity-90">support_agent</span>
+                  <p className="font-label-caps tracking-widest uppercase mb-2 opacity-80">Not sure which?</p>
+                  <h3 className="font-h3 text-h3 mb-4">Free Academic Counselling Session</h3>
+                  <p className="text-body-md mb-8 opacity-90">
+                    Our expert counsellors will guide you to the right course based on your goals, background, and exam timeline.
+                  </p>
+                  <div className="flex flex-col gap-4 w-full mt-auto">
+                    <a href="#" className="w-full py-3 bg-white text-primary-container font-bold rounded hover:bg-surface transition-all flex items-center justify-center gap-2">
+                      <span className="material-symbols-outlined text-xl">forum</span>
+                      Chat on WhatsApp
+                    </a>
+                    <a href="#" className="w-full py-3 border-2 border-white text-white font-bold rounded hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+                      <span className="material-symbols-outlined text-xl">call</span>
+                      Call Our Counsellor
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
