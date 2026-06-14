@@ -6,10 +6,6 @@ import { CallbackForm } from '../components/CallbackForm';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import imgCourse1 from '../assets/images/class.jpeg';
-import imgCourse2 from '../assets/images/students.jpeg';
-import imgCourse3 from '../assets/images/students1.jpeg';
-import imgCourse4 from '../assets/images/exam.jpeg';
-import imgCourse5 from '../assets/images/students with awards.jpeg';
 import imgCourseHero from '../assets/images/students.jpeg';
 import { useMedia } from '../hooks/useMedia';
 

@@ -58,7 +58,7 @@ export const AdminMedia: React.FC = () => {
 
       uploadTask.on(
         'state_changed',
-        (snapshot) => {
+        (_snapshot) => {
           // Progress can be tracked here if needed
         },
         (error) => {
