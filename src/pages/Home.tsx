@@ -7,6 +7,7 @@ import CTASection from "../components/CTASection";
 
 import heroVideo from "../assets/video/hero.mp4";
 import { useMedia } from "../hooks/useMedia";
+import { Link } from "react-router-dom";
 
 function Home() {
   const { getMedia } = useMedia();
@@ -41,13 +42,19 @@ function Home() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-md">
-                  <button className="bg-primary-container text-on-primary font-bold px-lg py-md rounded hover:scale-105 transition-transform shadow-lg text-lg">
+                  <Link 
+                    to="/courses" 
+                    className="bg-primary-container text-on-primary font-bold px-lg py-md rounded hover:scale-105 transition-transform shadow-lg text-lg text-center block"
+                  >
                     Explore Programs
-                  </button>
+                  </Link>
 
-                  <button className="border-2 border-primary-container text-primary-container font-bold px-lg py-md rounded hover:bg-primary-container/5 transition-colors text-lg">
+                  <Link 
+                    to="/admissions" 
+                    className="border-2 border-primary-container text-primary-container font-bold px-lg py-md rounded hover:bg-primary-container/5 transition-colors text-lg text-center block"
+                  >
                     Request a Callback
-                  </button>
+                  </Link>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-md pt-sm">
