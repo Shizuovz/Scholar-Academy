@@ -73,7 +73,7 @@ export const CallbackForm: React.FC = () => {
           </div>
           <div className="md:col-span-3 p-8">
             <form className="space-y-4" onSubmit={handleSubmit}>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label className="font-label-caps text-secondary uppercase tracking-tight">Full Name</label>
                   <input

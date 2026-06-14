@@ -43,10 +43,10 @@ function Navbar() {
           <Link to="/" className="flex items-center gap-sm" onClick={() => setIsOpen(false)}>
             <img
               alt="Scholar Academy Logo"
-              className="h-30 w-30 object-contain"
+              className="h-12 w-auto object-contain"
               src={getMedia('navbar_logo', logo)}
             />
-            <span className="text-2xl font-bold text-primary hidden xs:inline">
+            <span className="text-2xl font-bold text-primary hidden sm:inline">
               Scholar Academy
             </span>
           </Link>

@@ -97,7 +97,7 @@ export const Admissions: React.FC = () => {
                       </div>
                       <div>
                         <p className="font-label-caps text-secondary uppercase tracking-wider">Email Us</p>
-                        <p className="font-body-lg font-bold">info@scholaracademydimapur.com</p>
+                        <p className="font-body-lg font-bold break-all">info@scholaracademydimapur.com</p>
                       </div>
                     </div>
                   </div>

@@ -16,7 +16,7 @@ function Home() {
     <div className="bg-background text-on-surface antialiased">
       <Navbar />
 
-      <main>
+      <main className="mt-6">
         <section className="py-xl md:py-32 bg-gradient-to-br from-surface to-surface-container-low overflow-hidden">
           <div className="max-w-container-max mx-auto px-gutter">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
@@ -42,15 +42,15 @@ function Home() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-md">
-                  <Link 
-                    to="/courses" 
+                  <Link
+                    to="/courses"
                     className="bg-primary-container text-on-primary font-bold px-lg py-md rounded hover:scale-105 transition-transform shadow-lg text-lg text-center block"
                   >
                     Explore Programs
                   </Link>
 
-                  <Link 
-                    to="/admissions" 
+                  <Link
+                    to="/admissions"
                     className="border-2 border-primary-container text-primary-container font-bold px-lg py-md rounded hover:bg-primary-container/5 transition-colors text-lg text-center block"
                   >
                     Request a Callback

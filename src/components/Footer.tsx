@@ -12,7 +12,7 @@ function Footer() {
             <div className="flex items-center gap-sm">
               <img
                 alt="Scholar Academy Logo"
-                className="h-15 w-40 object-contain"
+                className="h-12 w-auto object-contain"
                 src={getMedia('footer_logo', logo)}
               />
             </div>

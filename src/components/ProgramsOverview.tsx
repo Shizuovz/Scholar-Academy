@@ -42,7 +42,7 @@ function ProgramsOverview() {
   return (
     <section className="py-xl bg-surface-container-low">
       <div className="max-w-container-max mx-auto px-gutter">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-xl gap-md">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-xl gap-md">
           <div className="space-y-sm">
             <h2 className="text-3xl md:text-4xl font-bold text-on-surface">
               Tailored Paths to Success
