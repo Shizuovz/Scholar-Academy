@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { CourseCard } from '../components/CourseCard';
@@ -13,6 +14,7 @@ export const Courses: React.FC = () => {
   const [courses, setCourses] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const { getMedia } = useMedia();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -94,7 +96,7 @@ export const Courses: React.FC = () => {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter max-w-5xl mx-auto">
                 {courses.map((course) => (
-                  <CourseCard key={course.id} {...course} />
+                  <CourseCard key={course.id} {...course} onDetailsClick={() => navigate(`/courses/${course.id}`)} />
                 ))}
                 
                 {/* Counselling Call to Action Card */}

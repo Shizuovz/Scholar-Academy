@@ -58,12 +58,14 @@ export const CourseCard: React.FC<CourseCardProps> = ({
             </li>
           ))}
         </ul>
-        <button 
-          onClick={onDetailsClick}
-          className="w-full py-3 border-2 border-primary-container text-primary-container font-bold rounded hover:bg-primary-container hover:text-on-primary transition-all"
-        >
-          Program Details
-        </button>
+        {onDetailsClick ? (
+          <button 
+            onClick={onDetailsClick}
+            className="w-full py-3 border-2 border-primary-container text-primary-container font-bold rounded hover:bg-primary-container hover:text-on-primary transition-all text-center"
+          >
+            Program Details
+          </button>
+        ) : null}
       </div>
     </div>
   );
