@@ -108,11 +108,11 @@ export const Courses: React.FC = () => {
                     Our expert counsellors will guide you to the right course based on your goals, background, and exam timeline.
                   </p>
                   <div className="flex flex-col gap-4 w-full mt-auto">
-                    <a href="#" className="w-full py-3 bg-white text-primary-container font-bold rounded hover:bg-surface transition-all flex items-center justify-center gap-2">
+                    <a href="https://wa.me/917005650117" target="_blank" rel="noopener noreferrer" className="w-full py-3 bg-white text-primary-container font-bold rounded hover:bg-surface transition-all flex items-center justify-center gap-2">
                       <span className="material-symbols-outlined text-xl">forum</span>
                       Chat on WhatsApp
                     </a>
-                    <a href="#" className="w-full py-3 border-2 border-white text-white font-bold rounded hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+                    <a href="tel:+917005650117" className="w-full py-3 border-2 border-white text-white font-bold rounded hover:bg-white/10 transition-all flex items-center justify-center gap-2">
                       <span className="material-symbols-outlined text-xl">call</span>
                       Call Our Counsellor
                     </a>
