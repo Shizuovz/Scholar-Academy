@@ -62,7 +62,7 @@ export const CourseDetails: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-surface">
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow mt-20">
         {/* Hero Section */}
         <section className="relative bg-surface py-xl">
           <div className="max-w-container-max mx-auto px-gutter grid md:grid-cols-2 gap-12 items-center">
@@ -101,7 +101,7 @@ export const CourseDetails: React.FC = () => {
         <section className="py-xl bg-surface-container-low">
           <div className="max-w-3xl mx-auto px-gutter">
             <h2 className="text-3xl font-bold text-on-surface mb-8 text-center">Program Details</h2>
-            
+
             <div className="bg-surface p-8 rounded-xl border border-surface-variant shadow-sm mb-12">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 border-b border-surface-variant pb-8">
                 {course.duration && (
@@ -115,7 +115,7 @@ export const CourseDetails: React.FC = () => {
                     </div>
                   </div>
                 )}
-                
+
                 {course.eligibility && (
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary-container shrink-0">

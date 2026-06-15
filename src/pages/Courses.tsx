@@ -45,7 +45,7 @@ export const Courses: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-surface">
       <Navbar />
-      <main className="flex-grow mt-4">
+      <main className="flex-grow mt-20">
         {/* Hero Section */}
         <section className="relative bg-surface py-xl">
           <div className="max-w-container-max mx-auto px-gutter grid md:grid-cols-2 gap-12 items-center">
