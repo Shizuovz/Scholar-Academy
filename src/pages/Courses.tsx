@@ -20,12 +20,12 @@ export const Courses: React.FC = () => {
     const fetchCourses = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, "courses"));
-        const coursesData = querySnapshot.docs.map(doc => ({ 
-          id: doc.id, 
+        const coursesData = querySnapshot.docs.map(doc => ({
+          id: doc.id,
           ...doc.data(),
           image: doc.data().imageUrl || imgCourse1
         }));
-        
+
         coursesData.sort((a: any, b: any) => {
           const orderA = a.order !== undefined ? a.order : 999;
           const orderB = b.order !== undefined ? b.order : 999;
@@ -45,7 +45,7 @@ export const Courses: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-surface">
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow mt-4">
         {/* Hero Section */}
         <section className="relative bg-surface py-xl">
           <div className="max-w-container-max mx-auto px-gutter grid md:grid-cols-2 gap-12 items-center">
@@ -90,7 +90,7 @@ export const Courses: React.FC = () => {
               <h2 className="font-h2 text-h2 text-on-surface mb-4">Our Specialized Programs</h2>
               <div className="h-1 w-20 bg-primary-container mx-auto"></div>
             </div>
-            
+
             {loading ? (
               <div className="text-center py-12 text-secondary">Loading courses...</div>
             ) : (
@@ -98,7 +98,7 @@ export const Courses: React.FC = () => {
                 {courses.map((course) => (
                   <CourseCard key={course.id} {...course} onDetailsClick={() => navigate(`/courses/${course.id}`)} />
                 ))}
-                
+
                 {/* Counselling Call to Action Card */}
                 <div className="program-card bg-primary-container text-on-primary rounded-xl border border-primary-container overflow-hidden flex flex-col h-full p-8 justify-center items-center text-center">
                   <span className="material-symbols-outlined text-5xl mb-4 opacity-90">support_agent</span>
