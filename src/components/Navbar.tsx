@@ -46,9 +46,6 @@ function Navbar() {
               className="h-12 w-auto object-contain"
               src={getMedia('navbar_logo', logo)}
             />
-            <span className="text-2xl font-bold text-primary hidden sm:inline">
-              Scholar Academy
-            </span>
           </Link>
 
           {/* Desktop Menu */}
