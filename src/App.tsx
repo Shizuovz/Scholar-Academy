@@ -14,6 +14,7 @@ import { Dashboard } from "./pages/Admin/Dashboard";
 import { AdminInitiatives } from "./pages/Admin/AdminInitiatives";
 import { AdminMedia } from "./pages/Admin/AdminMedia";
 import { AdminCallbacks } from "./pages/Admin/AdminCallbacks";
+import { AdminSettings } from "./pages/Admin/AdminSettings";
 import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
             <Route path="initiatives" element={<AdminInitiatives />} />
             <Route path="media" element={<AdminMedia />} />
             <Route path="requests" element={<AdminCallbacks />} />
+            <Route path="settings" element={<AdminSettings />} />
           </Route>
         </Routes>
         <FloatingWhatsApp />

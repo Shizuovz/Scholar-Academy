@@ -11,6 +11,10 @@ import { Link } from "react-router-dom";
 
 function Home() {
   const { getMedia } = useMedia();
+  const heroTag = getMedia('heroTag', 'Admissions Open');
+  const heroTitle = getMedia('heroTitle', 'Nagaland\'s Premier Institute for ');
+  const heroTitleHighlight = getMedia('heroTitleHighlight', 'IIT-JEE & NEET');
+  const heroDescription = getMedia('heroDescription', 'Established in 2022 in the heart of Dimapur, we provide a rigorous academic environment and personalized mentorship to shape the future of medical and engineering aspirants.');
 
   return (
     <div className="bg-background text-on-surface antialiased">
@@ -23,21 +27,19 @@ function Home() {
               <div className="space-y-lg max-w-2xl">
                 <div className="inline-flex items-center gap-xs px-sm py-1 bg-primary-container/10 border border-primary-container/20 rounded text-primary-container font-bold text-sm tracking-wider uppercase">
                   <span className="w-2 h-2 rounded-full bg-primary-container" />
-                  Since 2022 in Dimapur
+                  {heroTag}
                 </div>
 
                 <div className="space-y-md">
                   <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-on-surface leading-tight">
-                    Nagaland&apos;s Premier Institute for{" "}
+                    {heroTitle}
                     <span className="text-primary-container">
-                      IIT-JEE & NEET
+                      {heroTitleHighlight}
                     </span>
                   </h1>
 
-                  <p className="text-lg md:text-xl text-secondary leading-relaxed">
-                    Established in 2022 in the heart of Dimapur, we provide a
-                    rigorous academic environment and personalized mentorship to
-                    shape the future of medical and engineering aspirants.
+                  <p className="text-lg md:text-xl text-secondary leading-relaxed whitespace-pre-wrap">
+                    {heroDescription}
                   </p>
                 </div>
 

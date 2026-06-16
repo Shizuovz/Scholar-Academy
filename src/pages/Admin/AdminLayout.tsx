@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { LogOut, BookOpen, Presentation, Image as ImageIcon, Users, Menu, X } from 'lucide-react';
+import { LogOut, BookOpen, Presentation, Image as ImageIcon, Users, Settings, Menu, X } from 'lucide-react';
 
 export const AdminLayout: React.FC = () => {
   const { logout, user } = useAuth();
@@ -71,6 +71,10 @@ export const AdminLayout: React.FC = () => {
           <Link to="/admin/requests" onClick={closeMenu} className={linkClass('/admin/requests')}>
             <Users size={20} />
             Requests
+          </Link>
+          <Link to="/admin/settings" onClick={closeMenu} className={linkClass('/admin/settings')}>
+            <Settings size={20} />
+            Settings
           </Link>
         </nav>
         <div className="p-4 border-t border-surface-variant shrink-0">
