@@ -31,7 +31,7 @@ function Home() {
                 </div>
 
                 <div className="space-y-md">
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-on-surface leading-tight">
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-on-surface leading-tight">
                     {heroTitle}
                     <span className="text-primary-container">
                       {heroTitleHighlight}

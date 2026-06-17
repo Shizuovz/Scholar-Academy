@@ -112,6 +112,8 @@ export const CallbackForm: React.FC = () => {
                   <option>Foundation Program</option>
                   <option>Repeaters / Droppers Batch</option>
                   <option>Crash Course</option>
+                  <option>Robotics & Artificial Intelligence (AI) Vocational Course</option>
+                  <option>Psychometric Test</option>
                   <option>Other / General Inquiry</option>
                 </select>
               </div>

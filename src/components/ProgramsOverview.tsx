@@ -22,12 +22,22 @@ function ProgramsOverview() {
           return orderA - orderB;
         });
 
-        // Map colors for top 3 programs to maintain original design
-        const colors = ["bg-primary-container", "bg-primary", "bg-secondary"];
-        const topPrograms = coursesData.slice(0, 3).map((course, index) => ({
+        // Map colors for top 4 programs to maintain original design
+        const colors = ["bg-primary-container", "bg-primary", "bg-secondary", "bg-outline"];
+        let topPrograms = coursesData.slice(0, 4).map((course, index) => ({
           ...course,
           barClass: colors[index % colors.length]
         }));
+
+        if (!topPrograms.find((p: any) => p.title && (p.title.includes('Robotics') || p.title.includes('AI')))) {
+          if (topPrograms.length === 4) topPrograms.pop();
+          topPrograms.push({
+            id: 'robotics-ai',
+            title: 'Robotics & Artificial Intelligence (AI) Vocational Course',
+            description: 'Dive into the future with our comprehensive vocational course covering the fundamentals of robotics, AI, machine learning, and hands-on programming.',
+            barClass: 'bg-outline'
+          });
+        }
 
         setPrograms(topPrograms);
       } catch (error) {
@@ -58,7 +68,7 @@ function ProgramsOverview() {
         ) : programs.length === 0 ? (
           <div className="text-center py-8 text-secondary">No programs found.</div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-md">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
             {programs.map((program) => (
               <div
                 key={program.id}

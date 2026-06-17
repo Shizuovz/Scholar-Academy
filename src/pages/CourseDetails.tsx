@@ -5,6 +5,7 @@ import { db } from '../config/firebase';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { CallbackForm } from '../components/CallbackForm';
+import { RoboticsCourseDetails } from './RoboticsCourseDetails';
 
 export const CourseDetails: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
@@ -41,6 +42,10 @@ export const CourseDetails: React.FC = () => {
         <Footer />
       </div>
     );
+  }
+
+  if (courseId === 'robotics-ai') {
+    return <RoboticsCourseDetails />;
   }
 
   if (!course) {

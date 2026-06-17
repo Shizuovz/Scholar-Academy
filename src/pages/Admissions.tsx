@@ -41,8 +41,7 @@ export const Admissions: React.FC = () => {
                 Shape Your Future with Academic Excellence.
               </h1>
               <p className="font-body-lg text-secondary mb-lg">
-                Join Dimapur's premier institute for IIT-JEE and NEET preparation. We don't just teach subjects; we build
-                foundations for a lifetime of success.
+                Join Dimapur's premier institute for IIT-JEE and NEET preparation, STEM Education, and our innovative Robotics & Artificial Intelligence (AI) Vocational Course. Experience learning in our state-of-the-art IOT based classrooms as we build foundations for a lifetime of success.
               </p>
               <div className="flex flex-wrap gap-md">
                 <a
@@ -97,7 +96,7 @@ export const Admissions: React.FC = () => {
                       </div>
                       <div>
                         <p className="font-label-caps text-secondary uppercase tracking-wider">Email Us</p>
-                        <p className="font-body-lg font-bold break-all">info@scholaracademydimapur.com</p>
+                        <p className="font-body-lg font-bold break-all">scholaracademydimapur@gmail.com</p>
                       </div>
                     </div>
                   </div>
@@ -109,7 +108,7 @@ export const Admissions: React.FC = () => {
                   </div>
                   <div>
                     <p className="font-label-caps text-secondary mb-xs">Location</p>
-                    <p className="text-on-surface">Near Model Village Gate, 5th Mile Choumoukedima<br />Church road, Dimapur</p>
+                    <p className="text-on-surface">Near Model Village Gate, 5th Mile Choumoukedima</p>
                   </div>
                 </div>
                 <div className="mt-lg bg-surface-dim relative rounded-lg overflow-hidden h-48">

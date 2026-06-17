@@ -67,7 +67,7 @@ export const About: React.FC = () => {
               </h1>
               <p className="font-body-lg text-body-lg text-secondary mb-lg leading-relaxed">
                 Scholar Academy was founded with a singular vision: to bridge the gap between local talent and global
-                standards of competitive education for JEE and NEET aspirants.
+                standards of competitive education for JEE and NEET aspirants, while pioneering STEM Education through our Robotics & Artificial Intelligence (AI) Vocational Course.
               </p>
               <div className="flex flex-wrap gap-md">
                 <div className="flex items-center gap-sm bg-surface-container-lowest p-sm rounded-xl border border-surface-container shadow-sm">
@@ -122,8 +122,7 @@ export const About: React.FC = () => {
                 <p className="font-body-md text-body-md text-secondary leading-relaxed">
                   Established in 2022 in the vibrant city of Dimapur, Scholar Academy emerged as the answer to this need.
                   We didn't just build a coaching center; we built a sanctuary for ambition. Starting with a small cohort
-                  of 50 students, we have rapidly evolved into Nagaland's most trusted name for IIT-JEE and NEET
-                  preparation.
+                  of 50 students, we have rapidly evolved into Nagaland's most trusted name for IIT-JEE, NEET preparation, STEM Education, and our innovative Robotics & Artificial Intelligence (AI) Vocational Course.
                 </p>
               </div>
               <div className="md:col-span-5">

@@ -10,11 +10,6 @@ export const AdminInitiatives: React.FC = () => {
   const [facultyAreas, setFacultyAreas] = useState('');
   const [assessmentBenefits, setAssessmentBenefits] = useState('');
   
-  // Robotics Course states
-  const [whoCanEnroll, setWhoCanEnroll] = useState('');
-  const [whatStudentsLearn, setWhatStudentsLearn] = useState('');
-  const [handsOnLearning, setHandsOnLearning] = useState('');
-  const [benefits, setBenefits] = useState('');
 
   const fetchInitiatives = async () => {
     setLoading(true);
@@ -25,23 +20,15 @@ export const AdminInitiatives: React.FC = () => {
       if (docSnap.exists()) {
         const data = docSnap.data();
         
-        setFacultyAreas((data.facultyAreas || []).join('\n'));
-        setAssessmentBenefits((data.assessmentBenefits || []).join('\n'));
-        
-        if (data.roboticsCourse) {
-          setWhoCanEnroll((data.roboticsCourse.whoCanEnroll || []).join('\n'));
-          setWhatStudentsLearn((data.roboticsCourse.whatStudentsLearn || []).join('\n'));
-          setHandsOnLearning((data.roboticsCourse.handsOnLearning || []).join('\n'));
-          setBenefits((data.roboticsCourse.benefits || []).join('\n'));
-        }
+        const defaultFacultyAreas = 'Effective Utilization of Science Laboratories\nMathematics Laboratory Activities and Demonstrations\nActivity-Based and Experiential Learning Approaches\nPractical Teaching Methodologies';
+        const defaultAssessmentBenefits = 'Helps students understand their unique strengths and abilities\nIdentifies suitable academic and career pathways\nImproves self-awareness and confidence';
+
+        setFacultyAreas((data.facultyAreas && data.facultyAreas.length > 0) ? data.facultyAreas.join('\n') : defaultFacultyAreas);
+        setAssessmentBenefits((data.assessmentBenefits && data.assessmentBenefits.length > 0) ? data.assessmentBenefits.join('\n') : defaultAssessmentBenefits);
       } else {
         // Provide some default dummy values if the document doesn't exist yet
         setFacultyAreas('Effective Utilization of Science Laboratories\nMathematics Laboratory Activities');
         setAssessmentBenefits('Helps students understand their unique strengths\nImproves self-awareness');
-        setWhoCanEnroll('Students from Class VI to Class X\nUndergraduate students');
-        setWhatStudentsLearn('Fundamentals of Robotics\nCoding and Programming');
-        setHandsOnLearning('Robotics laboratory sessions\nAI-based activities');
-        setBenefits('Develop technical skills\nStrengthen creativity');
       }
     } catch (err) {
       console.error("Error fetching initiatives:", err);
@@ -62,13 +49,7 @@ export const AdminInitiatives: React.FC = () => {
       
       const updatedData = {
         facultyAreas: stringToArray(facultyAreas),
-        assessmentBenefits: stringToArray(assessmentBenefits),
-        roboticsCourse: {
-          whoCanEnroll: stringToArray(whoCanEnroll),
-          whatStudentsLearn: stringToArray(whatStudentsLearn),
-          handsOnLearning: stringToArray(handsOnLearning),
-          benefits: stringToArray(benefits),
-        }
+        assessmentBenefits: stringToArray(assessmentBenefits)
       };
 
       await setDoc(doc(db, "pages", "initiatives"), updatedData);
@@ -117,49 +98,6 @@ export const AdminInitiatives: React.FC = () => {
                 rows={5} 
                 className="w-full px-3 py-2 border border-surface-variant rounded-md focus:ring-primary focus:border-primary" 
               />
-            </div>
-          </div>
-
-          <div className="border-t border-surface-variant pt-6 space-y-4">
-            <h3 className="text-lg font-semibold text-primary">Robotics & AI Course</h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-on-surface mb-1">Who Can Enroll (One per line)</label>
-                <textarea 
-                  value={whoCanEnroll} 
-                  onChange={e => setWhoCanEnroll(e.target.value)} 
-                  rows={4} 
-                  className="w-full px-3 py-2 border border-surface-variant rounded-md focus:ring-primary focus:border-primary" 
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-on-surface mb-1">What Students Learn (One per line)</label>
-                <textarea 
-                  value={whatStudentsLearn} 
-                  onChange={e => setWhatStudentsLearn(e.target.value)} 
-                  rows={4} 
-                  className="w-full px-3 py-2 border border-surface-variant rounded-md focus:ring-primary focus:border-primary" 
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-on-surface mb-1">Hands-On Learning (One per line)</label>
-                <textarea 
-                  value={handsOnLearning} 
-                  onChange={e => setHandsOnLearning(e.target.value)} 
-                  rows={4} 
-                  className="w-full px-3 py-2 border border-surface-variant rounded-md focus:ring-primary focus:border-primary" 
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-on-surface mb-1">Benefits (One per line)</label>
-                <textarea 
-                  value={benefits} 
-                  onChange={e => setBenefits(e.target.value)} 
-                  rows={4} 
-                  className="w-full px-3 py-2 border border-surface-variant rounded-md focus:ring-primary focus:border-primary" 
-                />
-              </div>
             </div>
           </div>
 

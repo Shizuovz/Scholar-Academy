@@ -19,7 +19,7 @@ function Footer() {
 
             <p className="text-on-inverse-surface/60 text-sm leading-relaxed">
               Nagaland&apos;s premier destination for medical and engineering
-              entrance preparation. Excellence in education since 2022.
+              entrance preparation, STEM education, and our Robotics &amp; Artificial Intelligence (AI) Vocational Course. Excellence in education since 2022.
             </p>
 
             <div className="flex gap-md pt-sm">
@@ -88,7 +88,6 @@ function Footer() {
               </span>
               <div>
                 <p>Near Model Village Gate, 5th Mile Choumoukedima</p>
-                <p>Church road, Dimapur</p>
               </div>
             </div>
 
@@ -106,7 +105,7 @@ function Footer() {
               <span className="material-symbols-outlined text-primary-container">
                 mail
               </span>
-              <p>info@scholaracademydimapur.com</p>
+              <p>scholaracademydimapur@gmail.com</p>
             </div>
 
             <div className="flex items-center gap-sm text-sm text-on-inverse-surface/60">

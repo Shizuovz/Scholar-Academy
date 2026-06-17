@@ -6,7 +6,7 @@ export const AdmissionsCallbackForm: React.FC = () => {
   const [formData, setFormData] = useState({
     fullName: '',
     phoneNumber: '',
-    targetExam: 'IIT-JEE Mains & Adv',
+    targetExam: 'IIT-JEE Mains & Advanced',
   });
   const [loading, setLoading] = useState(false);
 
@@ -31,7 +31,7 @@ export const AdmissionsCallbackForm: React.FC = () => {
       setFormData({
         fullName: '',
         phoneNumber: '',
-        targetExam: 'IIT-JEE Mains & Adv',
+        targetExam: 'IIT-JEE Mains & Advanced',
       });
     } catch (error) {
       console.error('Error submitting form: ', error);
@@ -73,16 +73,21 @@ export const AdmissionsCallbackForm: React.FC = () => {
           />
         </div>
         <div>
-          <label className="block font-label-caps text-surface-container mb-xs">TARGET EXAM</label>
+          <label className="block font-label-caps text-surface-container mb-xs">PROGRAM OF INTEREST</label>
           <select
             className="w-full bg-white/10 border border-white/20 rounded-lg px-md py-sm focus:outline-none focus:ring-2 focus:ring-primary-container/50 focus:border-primary-container text-white appearance-none transition-all"
             name="targetExam"
             value={formData.targetExam}
             onChange={handleChange}
           >
-            <option className="bg-inverse-surface text-white">IIT-JEE Mains & Adv</option>
-            <option className="bg-inverse-surface text-white">NEET-UG</option>
-            <option className="bg-inverse-surface text-white">Foundation (IX-X)</option>
+            <option className="bg-inverse-surface text-white">IIT-JEE Mains & Advanced</option>
+            <option className="bg-inverse-surface text-white">NEET Medical Preparation</option>
+            <option className="bg-inverse-surface text-white">Foundation Program</option>
+            <option className="bg-inverse-surface text-white">Repeaters / Droppers Batch</option>
+            <option className="bg-inverse-surface text-white">Crash Course</option>
+            <option className="bg-inverse-surface text-white">Robotics & Artificial Intelligence (AI) Vocational Course</option>
+            <option className="bg-inverse-surface text-white">Psychometric Test</option>
+            <option className="bg-inverse-surface text-white">Other / General Inquiry</option>
           </select>
         </div>
         <button

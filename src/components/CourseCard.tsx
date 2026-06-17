@@ -7,7 +7,7 @@ interface CourseCardProps {
   duration: string;
   eligibility?: string;
   description?: string;
-  features: string[];
+  features?: string[];
   onDetailsClick?: () => void;
 }
 
@@ -49,7 +49,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({
           )}
         </div>
         <ul className="space-y-3 mb-8 flex-grow">
-          {features.map((feature, index) => (
+          {features && features.map((feature, index) => (
             <li key={index} className="flex items-start gap-2">
               <span className="material-symbols-outlined text-primary-container text-[20px]">
                 check_circle
