@@ -24,7 +24,7 @@ function ProgramsOverview() {
 
         // Map colors for top 4 programs to maintain original design
         const colors = ["bg-primary-container", "bg-primary", "bg-secondary", "bg-outline"];
-        let topPrograms = coursesData.slice(0, 4).map((course, index) => ({
+        let topPrograms: any[] = coursesData.slice(0, 4).map((course, index) => ({
           ...course,
           barClass: colors[index % colors.length]
         }));

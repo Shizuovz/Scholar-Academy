@@ -72,7 +72,7 @@ export const Initiatives: React.FC = () => {
     );
   }
 
-  const { facultyAreas } = data;
+
 
   return (
     <div className="min-h-screen flex flex-col bg-surface">
