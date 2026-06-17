@@ -1,79 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../config/firebase';
 import teacherTrainingImg from '../assets/images/initiatives/govt teachers training program.jpeg';
 import studentCounselingImg from '../assets/images/initiatives/student_counseling.jpeg';
-
 export const Initiatives: React.FC = () => {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<any>({
-    facultyAreas: [],
-    assessmentBenefits: []
-  });
-
-  useEffect(() => {
-    const fetchInitiatives = async () => {
-      try {
-        const docRef = doc(db, "pages", "initiatives");
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          const fetchedData = docSnap.data();
-          setData({
-            facultyAreas: fetchedData.facultyAreas?.length > 0 ? fetchedData.facultyAreas : [
-              'Effective Utilization of Science Laboratories',
-              'Mathematics Laboratory Activities and Demonstrations',
-              'Activity-Based and Experiential Learning Approaches',
-              'Practical Teaching Methodologies',
-            ],
-            assessmentBenefits: fetchedData.assessmentBenefits?.length > 0 ? fetchedData.assessmentBenefits : [
-              'Helps students understand their unique strengths and abilities',
-              'Identifies suitable academic and career pathways',
-              'Improves self-awareness and confidence',
-            ]
-          });
-        } else {
-          // Fallback static data if not set up in CMS yet
-          setData({
-            facultyAreas: [
-              'Effective Utilization of Science Laboratories',
-              'Mathematics Laboratory Activities and Demonstrations',
-              'Activity-Based and Experiential Learning Approaches',
-              'Practical Teaching Methodologies',
-            ],
-            assessmentBenefits: [
-              'Helps students understand their unique strengths and abilities',
-              'Identifies suitable academic and career pathways',
-              'Improves self-awareness and confidence',
-            ]
-          });
-        }
-      } catch (err) {
-        console.error("Error fetching initiatives:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchInitiatives();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex flex-col bg-surface">
-        <Navbar />
-        <main className="flex-grow flex items-center justify-center">
-          <p className="text-secondary">Loading initiatives...</p>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-
-
-
   return (
     <div className="min-h-screen flex flex-col bg-surface">
       <Navbar />
