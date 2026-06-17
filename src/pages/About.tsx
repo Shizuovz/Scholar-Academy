@@ -12,7 +12,7 @@ import logo2 from "../assets/logo2.png";
 import imgCampus from '../assets/images/students.jpeg';
 import imgClassroom from '../assets/images/class.jpeg';
 import imgLab from '../assets/images/exam.jpeg';
-import imgLibrary from '../assets/images/students1.jpeg';
+import imgLibrary from "../assets/images/initiatives/students1.jpeg";
 import imgReception from '../assets/images/counselling.jpeg';
 import { useMedia } from '../hooks/useMedia';
 

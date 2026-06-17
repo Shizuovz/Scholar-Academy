@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { CallbackForm } from '../components/CallbackForm';
-import imgRobotics from '../assets/images/initiatives/govt teachers training program.jpeg'; // Using the lab image for robotics
+import imgRobotics from '../assets/images/initiatives/students1.jpeg';
 
 export const RoboticsCourseDetails: React.FC = () => {
   return (

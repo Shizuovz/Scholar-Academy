@@ -8,7 +8,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import imgCourse1 from '../assets/images/class.jpeg';
 import imgCourseHero from '../assets/images/students.jpeg';
-import imgRobotics from '../assets/images/initiatives/govt teachers training program.jpeg';
+import imgRobotics from '../assets/images/initiatives/students1.jpeg';
 import { useMedia } from '../hooks/useMedia';
 
 export const Courses: React.FC = () => {
@@ -110,14 +110,13 @@ export const Courses: React.FC = () => {
             </div>
             <div className="relative h-[400px] rounded-xl overflow-hidden shadow-xl">
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent z-10 pointer-events-none"></div>
-              
+
               {heroImages.map((src, index) => (
                 <img
                   key={index}
                   alt={`Academic Environment ${index + 1}`}
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 grayscale-[20%] sepia-[10%] ${
-                    index === currentSlide ? 'opacity-100' : 'opacity-0'
-                  }`}
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 grayscale-[20%] sepia-[10%] ${index === currentSlide ? 'opacity-100' : 'opacity-0'
+                    }`}
                   src={src}
                 />
               ))}
@@ -128,9 +127,8 @@ export const Courses: React.FC = () => {
                   <button
                     key={index}
                     onClick={() => setCurrentSlide(index)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      index === currentSlide ? 'w-8 bg-primary-container' : 'w-2 bg-white/70 hover:bg-white'
-                    }`}
+                    className={`h-2 rounded-full transition-all duration-300 ${index === currentSlide ? 'w-8 bg-primary-container' : 'w-2 bg-white/70 hover:bg-white'
+                      }`}
                     aria-label={`Go to slide ${index + 1}`}
                   />
                 ))}
@@ -152,37 +150,37 @@ export const Courses: React.FC = () => {
             ) : (
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter max-w-5xl mx-auto">
-                {courses.map((course) => (
-                  <CourseCard key={course.id} {...course} onDetailsClick={() => navigate(`/courses/${course.id}`)} />
-                ))}
-              </div>
-              
-              {/* Counselling Call to Action Card */}
-              <div className="max-w-5xl mx-auto mt-12">
-                <div className="bg-primary-container text-on-primary rounded-xl border border-primary-container overflow-hidden p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-md">
-                  <div className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-4 md:gap-6 flex-grow">
-                    <span className="material-symbols-outlined text-5xl opacity-90 shrink-0 md:mt-1">support_agent</span>
-                    <div>
-                      <p className="font-label-caps tracking-widest uppercase mb-2 opacity-80 text-sm">Not sure which?</p>
-                      <h3 className="font-h3 text-h3 mb-2 md:mb-3">Free Academic Counselling Session</h3>
-                      <p className="text-body-md opacity-90 max-w-2xl">
-                        Our expert counsellors will guide you to the right course based on your goals, background, and exam timeline.
-                      </p>
+                  {courses.map((course) => (
+                    <CourseCard key={course.id} {...course} onDetailsClick={() => navigate(`/courses/${course.id}`)} />
+                  ))}
+                </div>
+
+                {/* Counselling Call to Action Card */}
+                <div className="max-w-5xl mx-auto mt-12">
+                  <div className="bg-primary-container text-on-primary rounded-xl border border-primary-container overflow-hidden p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-md">
+                    <div className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-4 md:gap-6 flex-grow">
+                      <span className="material-symbols-outlined text-5xl opacity-90 shrink-0 md:mt-1">support_agent</span>
+                      <div>
+                        <p className="font-label-caps tracking-widest uppercase mb-2 opacity-80 text-sm">Not sure which?</p>
+                        <h3 className="font-h3 text-h3 mb-2 md:mb-3">Free Academic Counselling Session</h3>
+                        <p className="text-body-md opacity-90 max-w-2xl">
+                          Our expert counsellors will guide you to the right course based on your goals, background, and exam timeline.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto shrink-0">
+                      <a href="https://wa.me/917005650117" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-white text-primary-container font-bold rounded hover:bg-surface transition-all flex items-center justify-center gap-2 shadow-sm">
+                        <span className="material-symbols-outlined text-xl">forum</span>
+                        Chat on WhatsApp
+                      </a>
+                      <a href="tel:+917005650117" className="px-6 py-3 border-2 border-white text-white font-bold rounded hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+                        <span className="material-symbols-outlined text-xl">call</span>
+                        Call Our Counsellor
+                      </a>
                     </div>
                   </div>
-                  
-                  <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto shrink-0">
-                    <a href="https://wa.me/917005650117" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-white text-primary-container font-bold rounded hover:bg-surface transition-all flex items-center justify-center gap-2 shadow-sm">
-                      <span className="material-symbols-outlined text-xl">forum</span>
-                      Chat on WhatsApp
-                    </a>
-                    <a href="tel:+917005650117" className="px-6 py-3 border-2 border-white text-white font-bold rounded hover:bg-white/10 transition-all flex items-center justify-center gap-2">
-                      <span className="material-symbols-outlined text-xl">call</span>
-                      Call Our Counsellor
-                    </a>
-                  </div>
                 </div>
-              </div>
               </>
             )}
           </div>
